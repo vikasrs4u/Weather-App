@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
 
 
-class WeatherViewController: UIViewController {
+class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     //Constants
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -17,6 +18,7 @@ class WeatherViewController: UIViewController {
     
     
     //TODO: Declare instance variables here
+    let locationManager = CLLocationManager()
     
     
     
@@ -26,14 +28,23 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         
-        //TODO:Set up the location manager here.
+        //Set up the location manager here.
+        locationManager.delegate = self
         
+        // to set the accuracy level
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         
-        
+        // to request user for permission after this remember to add the
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+
+
     }
     
     
@@ -76,9 +87,37 @@ class WeatherViewController: UIViewController {
     
     //Write the didUpdateLocations method here:
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        // locations is an array and we need the last well know location. So in that array we are taking the last value, i.e Last well know location
+        let location = locations[locations.count-1]
+        
+        let latitude = String(location.coordinate.latitude)
+        let longitude = String(location.coordinate.longitude)
+        
+        //The radius of uncertainty for the location, measured in meters. If this "horizontalAccuracy" is negative then it means our location data is not proper.
+        if (location.horizontalAccuracy > 0)
+        {
+            locationManager.stopUpdatingLocation()
+            print("Latitude value is \(latitude) and the longitude value is \(longitude) ")
+            // this is to match sample API call for openweather https://samples.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=b6907d289e10d714a6e88b30761fae22
+            // all 3 lat, lon and appid and required
+            let params : [String:String] = ["lat":latitude, "lon":longitude, "appid":APP_ID]
+        }
+
+        
+    }
+    
     
     
     //Write the didFailWithError method here:
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        print("Error occured while fetching location");
+        
+        cityLabel.text = "Location Unavailable"
+    }
     
     
     

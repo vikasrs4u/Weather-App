@@ -20,6 +20,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     //TODO: Declare instance variables here
     let locationManager = CLLocationManager()
+    let weatherDataModel = WeatherDataModel()
     
     
     
@@ -86,9 +87,24 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     func updateWeatherData(jsonValue:JSON)
     {
-        let cityValue = String(jsonValue["name"].rawString()!)
+        // below Optional wrapping is required to avoid app crashing incase we get error code from the api call
         
-        cityLabel.text = cityValue
+        if let tempValue = jsonValue["main"]["temp"].double
+        {
+            weatherDataModel.cityName = jsonValue["name"].stringValue
+            weatherDataModel.temperatureInCelcius = Int(tempValue - 273.15)
+            weatherDataModel.weatherConditionCode = jsonValue["weather"][0]["id"].intValue
+            weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.weatherConditionCode)
+            
+            // below method will update all UI labels and image views
+            updateUIWithWeatherData()
+        }
+        else
+        {
+            cityLabel.text = "Weather Unavailable"
+        
+        }
+
     }
     
     
@@ -99,7 +115,15 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     //Write the updateUIWithWeatherData method here:
     
+    func updateUIWithWeatherData()
+    {
+        cityLabel.text = weatherDataModel.cityName
     
+        temperatureLabel.text = "\(weatherDataModel.temperatureInCelcius)℃"
+        
+        weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
+        
+    }
     
     
     

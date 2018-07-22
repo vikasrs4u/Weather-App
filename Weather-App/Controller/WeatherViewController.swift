@@ -8,7 +8,8 @@
 
 import UIKit
 import CoreLocation
-
+import Alamofire
+import SwiftyJSON
 
 class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -52,11 +53,28 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     //MARK: - Networking
     /***************************************************************/
     
-    //Write the getWeatherData method here:
-    
-    
-    
-    
+    func getWeatherData(url:String, parameters:[String:String])
+    {
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON { response in
+
+            if(response.result.isSuccess)
+            {
+                print("We are Succcessfully able to call the weather data.")
+                let weatherJSON :JSON = JSON(response.result.value!)
+                
+                self.updateWeatherData(jsonValue: weatherJSON)
+
+             }
+            
+            if (response.result.isFailure)
+            {
+                print("Its a failure to call the weather URL \(String(describing: response.result.error))")
+                self.cityLabel.text = "Connection Error"
+            }
+        }
+
+    }
+
     
     
     
@@ -66,7 +84,12 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     //Write the updateWeatherData method here:
     
-    
+    func updateWeatherData(jsonValue:JSON)
+    {
+        let cityValue = String(jsonValue["name"].rawString()!)
+        
+        cityLabel.text = cityValue
+    }
     
     
     
@@ -75,6 +98,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     
     //Write the updateUIWithWeatherData method here:
+    
+    
     
     
     
@@ -99,14 +124,20 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         if (location.horizontalAccuracy > 0)
         {
             locationManager.stopUpdatingLocation()
+            
+            locationManager.delegate = nil
             print("Latitude value is \(latitude) and the longitude value is \(longitude) ")
             // this is to match sample API call for openweather https://samples.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=b6907d289e10d714a6e88b30761fae22
             // all 3 lat, lon and appid and required
             let params : [String:String] = ["lat":latitude, "lon":longitude, "appid":APP_ID]
+            
+            getWeatherData(url:WEATHER_URL , parameters:params)
         }
 
         
     }
+    
+    
     
     
     

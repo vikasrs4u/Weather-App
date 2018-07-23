@@ -14,6 +14,9 @@
 		1D6A15BC20FC776A0030560F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A15BB20FC776A0030560F /* Assets.xcassets */; };
 		1D6A15BF20FC776A0030560F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A15BD20FC776A0030560F /* LaunchScreen.storyboard */; };
 		1D6A15CC20FC7C390030560F /* ChangeCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A15CB20FC7C390030560F /* ChangeCityViewController.swift */; };
+		1D7B5755210563D40039B418 /* londoncity.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1D7B5754210563D40039B418 /* londoncity.gif */; };
+		1D7B575B21056D440039B418 /* newyork.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1D7B575A21056D440039B418 /* newyork.gif */; };
+		1D7B575D21056F7B0039B418 /* eiffel.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1D7B575C21056F7B0039B418 /* eiffel.gif */; };
 		ADAABFD194B38DB9BFCB8A70 /* Pods_Weather_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9168182F850AC0137AE304E6 /* Pods_Weather_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +30,9 @@
 		1D6A15BE20FC776A0030560F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D6A15C020FC776A0030560F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D6A15CB20FC7C390030560F /* ChangeCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCityViewController.swift; sourceTree = "<group>"; };
+		1D7B5754210563D40039B418 /* londoncity.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = londoncity.gif; path = Assets.xcassets/londoncity.gif; sourceTree = "<group>"; };
+		1D7B575A21056D440039B418 /* newyork.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = newyork.gif; path = Assets.xcassets/newyork.gif; sourceTree = "<group>"; };
+		1D7B575C21056F7B0039B418 /* eiffel.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = eiffel.gif; path = Assets.xcassets/eiffel.gif; sourceTree = "<group>"; };
 		5B5FA63817574728917443C8 /* Pods-Weather-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Weather-App/Pods-Weather-App.release.xcconfig"; sourceTree = "<group>"; };
 		9168182F850AC0137AE304E6 /* Pods_Weather_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		933F6FE241C8816C254C9803 /* Pods-Weather-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Weather-App/Pods-Weather-App.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +84,9 @@
 				1D6A15C720FC78EE0030560F /* Model */,
 				1D6A15C620FC78B00030560F /* View */,
 				1D6A15BB20FC776A0030560F /* Assets.xcassets */,
+				1D7B575C21056F7B0039B418 /* eiffel.gif */,
+				1D7B575A21056D440039B418 /* newyork.gif */,
+				1D7B5754210563D40039B418 /* londoncity.gif */,
 				1D6A15BD20FC776A0030560F /* LaunchScreen.storyboard */,
 				1D6A15C020FC776A0030560F /* Info.plist */,
 			);
@@ -179,6 +188,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D6A15BF20FC776A0030560F /* LaunchScreen.storyboard in Resources */,
+				1D7B5755210563D40039B418 /* londoncity.gif in Resources */,
+				1D7B575B21056D440039B418 /* newyork.gif in Resources */,
+				1D7B575D21056F7B0039B418 /* eiffel.gif in Resources */,
 				1D6A15BC20FC776A0030560F /* Assets.xcassets in Resources */,
 				1D6A15BA20FC77690030560F /* Main.storyboard in Resources */,
 			);
@@ -196,12 +208,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Weather-App/Pods-Weather-App-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftGifOrigin/SwiftGifOrigin.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGifOrigin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

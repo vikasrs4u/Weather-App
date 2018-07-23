@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import Alamofire
 import SwiftyJSON
+import SwiftGifOrigin
 
 class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -29,6 +30,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
+    @IBOutlet weak var mainScreenBackground: UIImageView!
     
     override func viewDidLoad()
     {
@@ -123,6 +125,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
         
+        mainScreenBackground.image = UIImage.gif(name:"londoncity")
     }
     
     

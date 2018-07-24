@@ -2,6 +2,10 @@
 
 Weather App is a basic iOS weather app for iPhone with a beautiful user interface. Using this iOS app one can get current weather data of your city. You can also check the weather from other 20,000 cities all over the world by providing city name in "Change City Screen". 
 
+### App Demo 
+
+![weather app](https://user-images.githubusercontent.com/22437872/43170000-0c656d5e-8f58-11e8-82ac-bef982125896.gif)
+
 ### API Used
 
 Open Weather Map API: Open weather map's REST API is integrated to get the current weather details. 

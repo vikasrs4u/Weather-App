@@ -54,8 +54,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
 
     }
     
-    
-    
+
     //MARK: - Networking
     /***************************************************************/
     
@@ -86,9 +85,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     
     //MARK: - JSON Parsing
     /***************************************************************/
-    
-    
-    //Write the updateWeatherData method here:
+
+    //updateWeatherData method here:
     
     func updateWeatherData(jsonValue:JSON)
     {
@@ -116,9 +114,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     
     //MARK: - UI Updates
     /***************************************************************/
-    
-    
-    //Write the updateUIWithWeatherData method here:
+    // updateUIWithWeatherData method here:
     
     func updateUIWithWeatherData()
     {
@@ -132,17 +128,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         
         mainScreenBackground.image = UIImage.gif(name:"londoncity")
     }
-    
-    
-    
-    
-    
+
     
     //MARK: - Location Manager Delegate Methods
     /***************************************************************/
-    
-    
-    //Write the didUpdateLocations method here:
+    //The didUpdateLocations method here:
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
@@ -169,10 +159,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         
     }
     
-    
-    
-    
-    
+
     //Write the didFailWithError method here:
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
@@ -183,18 +170,18 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     }
     
     
-    
-    
-    
     //MARK: - Change City Delegate methods
     /***************************************************************/
-    
-    
     //The userEnteredNewCity Delegate method here:
     
     func userEnteredNewCity(city: String)
     {
-        print(city)
+        // The URL to call Current weather API using City Name is : https://samples.openweathermap.org/data/2.5/weather?q=London&appid=b6907d289e10d714a6e88b30761fae22
+        // only Two parameters City and APP ID.
+        
+        let params : [String:String] = ["q":city,"appid":APP_ID]
+        
+        getWeatherData(url:WEATHER_URL , parameters:params)
     }
     
     
@@ -209,9 +196,5 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
             destinationVC.delegate = self
         }
     }
-    
-    
-    
-    
     
 }

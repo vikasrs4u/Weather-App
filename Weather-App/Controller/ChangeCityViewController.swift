@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftGifOrigin
 
 protocol ChangeCityDelegate
 {
@@ -16,7 +16,15 @@ protocol ChangeCityDelegate
 }
 
 
-class ChangeCityViewController: UIViewController {
+class ChangeCityViewController: UIViewController
+{
+    
+    @IBOutlet weak var changeCityBackground: UIImageView!
+    
+    override func viewDidLoad()
+    {
+        changeCityBackground.image = UIImage.gif(name:"newyork")
+    }
     
     //Declare the delegate variable here "?" is given at the end to state if 
     var delegate : ChangeCityDelegate?

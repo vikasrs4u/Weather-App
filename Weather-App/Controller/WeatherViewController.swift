@@ -36,7 +36,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     {
         super.viewDidLoad()
         
+        mainScreenBackground.image = UIImage.gif(name:"londoncity")
         
+        temperatureLabel.isHidden = true
         //Set up the location manager here.
         locationManager.delegate = self
         
@@ -122,6 +124,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         cityLabel.text = weatherDataModel.cityName
     
         temperatureLabel.text = "\(weatherDataModel.temperatureInCelcius)℃"
+        
+        temperatureLabel.isHidden = false
         
         weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
         

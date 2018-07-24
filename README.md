@@ -1,5 +1,4 @@
 # Weather App
-
 Weather App is a basic iOS weather app for iPhone with a beautiful user interface. Using this iOS app one can get current weather data of your city. You can also check the weather from other 20,000 cities all over the world by providing city name in "Change City Screen". 
 
 ### App Demo 

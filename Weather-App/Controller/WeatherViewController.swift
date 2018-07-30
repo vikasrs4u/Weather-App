@@ -19,7 +19,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     //Constants
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
     let APP_ID = "31e7d3b0d44002435656d630745bf6f8"
-    let delegate = UIApplication.shared.delegate as! AppDelegate
     
     
     //TODO: Declare instance variables here
@@ -125,9 +124,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     func updateUIWithWeatherData()
     {
         cityLabel.text = weatherDataModel.cityName
-        
-        delegate.cityName = weatherDataModel.cityName
-    
+            
         temperatureLabel.text = "\(weatherDataModel.temperatureInCelcius)℃"
         
         temperatureLabel.isHidden = false
@@ -217,10 +214,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
  
     // method to trigger user notification every day at 9:00 AM
     
-    func activeAppNotificationDetails(cityName: String)
+    func activeAppNotificationDetails()
     {
         let content = UNMutableNotificationContent()
-        content.body = "Good Morning🌞!!! Check out the current weather 🌤 at \(cityName)"
+        content.body = "Good Morning🌞!!! Check out the current weather 🌤 in your city"
         let currentDate: NSDateComponents = NSDateComponents()
         currentDate.hour = 9
         currentDate.minute = 0

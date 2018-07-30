@@ -12,8 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
     
-    var cityName = ""
-
     var window: UIWindow?
 
 
@@ -30,8 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     func applicationDidEnterBackground(_ application: UIApplication)
     {
         let weather = WeatherViewController()
-        // When app goes to background we collect the cityname and set up the UI notification, that will be trigerred
-        weather.activeAppNotificationDetails(cityName:self.cityName)
+        // When app goes to background we set up the UI notification, that will be trigerred
+        weather.activeAppNotificationDetails()
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }

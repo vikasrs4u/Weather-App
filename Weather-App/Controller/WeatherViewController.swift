@@ -11,6 +11,7 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 import SwiftGifOrigin
+import UserNotifications
 
 class WeatherViewController: UIViewController, CLLocationManagerDelegate, ChangeCityDelegate {
 
@@ -18,6 +19,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     //Constants
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
     let APP_ID = "31e7d3b0d44002435656d630745bf6f8"
+    let delegate = UIApplication.shared.delegate as! AppDelegate
     
     
     //TODO: Declare instance variables here
@@ -37,9 +39,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     {
         super.viewDidLoad()
         
-        mainScreenBackground.image = UIImage.gif(name:"londoncity")
-        
-        temperatureLabel.isHidden = true
         //Set up the location manager here.
         locationManager.delegate = self
         
@@ -48,8 +47,15 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         
         // to request user for permission after this remember to add the
         locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        
+        //Ask permission for user notification
+        askUserPermissionForNotification()
+    
+        mainScreenBackground.image = UIImage.gif(name:"londoncity")
+        
+        temperatureLabel.isHidden = true
+
 
 
     }
@@ -119,6 +125,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
     func updateUIWithWeatherData()
     {
         cityLabel.text = weatherDataModel.cityName
+        
+        delegate.cityName = weatherDataModel.cityName
     
         temperatureLabel.text = "\(weatherDataModel.temperatureInCelcius)℃"
         
@@ -197,4 +205,32 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         }
     }
     
+    
+    func askUserPermissionForNotification()
+    {
+        //Code for requesting user permission, this will be called only once.
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound]) { (didRecievePermission, error) in
+            
+        }
+        
+    }
+ 
+    // method to trigger user notification every day at 9:00 AM
+    
+    func activeAppNotificationDetails(cityName: String)
+    {
+        let content = UNMutableNotificationContent()
+        content.body = "Good Morning🌞!!! Check out the current weather 🌤 at \(cityName)"
+        let currentDate: NSDateComponents = NSDateComponents()
+        currentDate.hour = 9
+        currentDate.minute = 0
+        currentDate.timeZone = NSTimeZone.default
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: currentDate as DateComponents, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: "UserNotification", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler:nil)
+        
+    }
 }

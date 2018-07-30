@@ -26,7 +26,9 @@ Open Weather Map API: Open weather map's REST API is integrated to get the curre
 
 4) A beautiful gif is shown as the background view for this app. 
 
-5) Clean and beautiful UI screens.
+5) A beautiful user notification, every day to remind the user to check the latest weather in the city.
+
+6) Clean and beautiful UI screens.
 
 
 ## License
